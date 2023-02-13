@@ -1,0 +1,28 @@
+{
+  "name": "teste_levva",
+  "version": "1.0.0",
+  "description": "simple node api web application",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArchanjoJr/reimagined-carnival.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArchanjoJr/reimagined-carnival/issues"
+  },
+  "homepage": "https://github.com/ArchanjoJr/reimagined-carnival#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
