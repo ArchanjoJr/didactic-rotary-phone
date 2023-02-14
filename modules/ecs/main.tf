@@ -133,7 +133,8 @@ assume_role_policy = <<EOF
             "Action": "sts:AssumeRole",
             "Principal": {
             "Service": [
-                "ecs.amazonaws.com"
+                "ecs.amazonaws.com",
+                "ecs-tasks.amazonaws.com"
             ]
             },
             "Effect": "Allow",
@@ -155,6 +156,7 @@ resource "aws_iam_role" "ecs_task_execution_role" {
             "Action": "sts:AssumeRole",
             "Principal": {
             "Service": [
+                "ecs.amazonaws.com",
                 "ecs-tasks.amazonaws.com"
             ]
             },
