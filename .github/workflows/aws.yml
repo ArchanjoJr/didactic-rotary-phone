@@ -32,9 +32,7 @@ on:
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}               # set this to your Amazon ECR repository name
-  ECS_SERVICE: ${{ secrets.ECS_SERVICE }}                  # set this to your Amazon ECS service name
-  ECS_CLUSTER: ${{ secrets.ECS_CLUSTER }}                  # set this to your Amazon ECS cluster name
+  ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}               # set this to your Amazon ECR repository name# set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: ${{ secrets.ECS_TASK_DEFINITION }}          # set this to the path to your Amazon ECS task definition
   CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}                   # set this to the name of the container in the
                                                       # containerDefinitions section of your task definition
@@ -67,7 +65,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{ github.sha }}
+        IMAGE_TAG: latest
       run: |
         # Build a docker container and
         # push it to ECR so that it can
@@ -92,6 +90,6 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: ${{ env.ECS_SERVICE }}
-        cluster: ${{ env.ECS_CLUSTER }}
+        service: ${{ vars.ECS_SERVICE }}
+        cluster: ${{ vars.ECS_CLUSTER }}
         wait-for-service-stability: true

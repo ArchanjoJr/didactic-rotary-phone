@@ -3,16 +3,16 @@ variable "environment" {
   description = "environment name"
   default     = "dev"
 }
+variable "app_name" {}
 variable "region" {
   type        = string
   default     = "us-east-1"
   description = "region name"
 }
-variable "ecs_cluster_name" {
-  type        = any
-  description = "name for the ecs_cluster repository"
-}
 
+variable "private_subnets_ids" {
+  default = ""
+}
 variable "tags" {
   default = {
     Author = "Archanjojr"
@@ -51,25 +51,14 @@ variable "container_definitions_container_port" {
   default = 3000
 }
 variable "container_definitions_host_port" {
-  default = 3000
+  default = 80
 }
 variable "aws_ecs_service_desired_count" {
   default = 1
   type = number
 }
-variable "aws_ecs_service_network_subnets" {
-  type = list(string)
-  default = [
-    "subnet-6c2ffc21",
-    "subnet-fa969aa6",
-    "subnet-321d1e55",
-    "subnet-cfaba5e1",
-    "subnet-132eeb1d",
-    "subnet-64e0b75a"
-  ]
-}
+
 variable "aws_vpc_id" {
-  default = "vpc-61550a1b"
   type = string
 }
 variable "aws_security_group_name" {
@@ -86,4 +75,18 @@ variable "aws_security_group_protocol" {
 variable "aws_security_group_cidr_blocks" {
   default = ["0.0.0.0/0"]
   type = list(string)
+}
+
+variable "aws_alb_target_arn" {
+  default = ""
+}
+
+variable "aws_alb_security_group_id" {
+  default = ""
+}
+variable "load_balancer_type" {
+  default = "application"
+}
+variable "public_subnets_ids" {
+  default = ""
 }
