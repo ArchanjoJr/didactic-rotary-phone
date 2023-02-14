@@ -65,10 +65,20 @@ resource "aws_ecs_task_definition" "node_task_definition" {
           hostPort      = var.container_definitions_host_port
         }
       ]
-
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          awslogs-group         = "logs-groups-task-definition"
+          awslogs-stream-prefix = "ecs"
+          awslogs-region        = var.region
+        }
+      }
       healthCheck = {
         retries = 10
         command = [ "CMD-SHELL", "curl --fail http://localhost:3000/status || exit 1"]
+        timeout = 5
+        interval = 10
+        startPeriod = 15
       }
     }
   ])
