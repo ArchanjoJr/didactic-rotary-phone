@@ -12,10 +12,13 @@ variable "ecr_name" {
   type        = any
   description = "name for the ecr repository"
 }
-
+variable "app_name" {
+  default = ""
+}
 variable "tags" {
   default = {
     Author = "Archanjojr"
+    Project = "levva_test"
   }
   description = "additional tags for aws resources"
   type        = map(string)
