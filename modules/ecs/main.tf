@@ -65,6 +65,11 @@ resource "aws_ecs_task_definition" "node_task_definition" {
           hostPort      = var.container_definitions_host_port
         }
       ]
+
+      healthCheck = {
+        retries = 10
+        command = [ "CMD-SHELL", "curl --fail http://localhost:3000/status || exit 1"]
+      }
     }
   ])
   depends_on = [
